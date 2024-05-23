@@ -7,7 +7,7 @@ import {
   FaEnvelope,
   FaHome,
   FaList,
-  FaUser,
+  FaUsers,
   FaUtensils,
 } from 'react-icons/fa';
 import { BiSolidFoodMenu } from 'react-icons/bi';
@@ -52,7 +52,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to='/dashboard/users'>
-                  <FaUser />
+                  <FaUsers />
                   All Users
                 </NavLink>
               </li>
