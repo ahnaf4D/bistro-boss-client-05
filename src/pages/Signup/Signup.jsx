@@ -7,7 +7,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 const Signup = () => {
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const { createUser, setUser, user, updateUserProfile, logOut } =
     useContext(AuthContext);
@@ -21,16 +24,26 @@ const Signup = () => {
     console.log(data);
     createUser(data.email, data.pass)
       .then(() => {
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+        };
         // const loggedUser = result.user;
-        Swal.fire({
-          title: 'Account Creation Successfull',
-          icon: 'success',
+        axiosPublic.post('/users', userInfo).then((res) => {
+          if (res.data.insertedId) {
+            console.log('user added to the database');
+            Swal.fire({
+              title: 'Account Creation Successfull',
+              icon: 'success',
+            });
+
+            updateUserProfile(data.name);
+            setUser({ ...user, photoURL: null, displayName: data.name });
+            logOut();
+            navigate('/login');
+            reset();
+          }
         });
-        updateUserProfile(data.name);
-        setUser({ ...user, photoURL: null, displayName: data.name });
-        logOut();
-        navigate('/login');
-        reset();
       })
       .catch((err) => {
         console.log(err.massage);
@@ -183,6 +196,7 @@ const Signup = () => {
                 Login
               </Link>
             </p>
+            <SocialLogin></SocialLogin>
           </form>
         </div>
       </div>
