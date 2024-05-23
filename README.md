@@ -1,5 +1,5 @@
-# Bistro Boss Restaurant Part 04
+# Bistro Boss Restaurant Part 05
 
-This is Fourth Client Side Repo of Bistro Boss Restaurant. Where I earn little bit new.
+This is Fifth Client Side Repo of Bistro Boss Restaurant. Where I earn little bit new.
 
-## [Server Side Repository](https://github.com/ahnaf4D/bistro-boss-restaurant-server-04)
+## [Server Side Repository](https://github.com/ahnaf4D/bistro-boss-server-05)
